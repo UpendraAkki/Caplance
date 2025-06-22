@@ -1,150 +1,275 @@
-
-import React, { useState, useEffect } from 'react';
-import TaskBoard from './TaskBoard';
+import React, { useState } from 'react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { ExternalLink, Github, Play, Code, Gamepad2, Bot, Zap, Globe } from 'lucide-react';
 
 const DashboardPreview = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [activeProject, setActiveProject] = useState(0);
 
-  useEffect(() => {
-    // Use IntersectionObserver to trigger animation when component enters viewport
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    const section = document.getElementById('dashboard');
-    if (section) observer.observe(section);
-
-    return () => {
-      if (section) observer.unobserve(section);
-    };
-  }, []);
+  const projects = [
+    {
+      id: 1,
+      title: "Orbis",
+      category: "🌐 Website Development",
+      description: "The Future of Smart Textile Technology is here. We integrate AI-powered textile sensors into clothing, footwear, and wearables.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Vite", "React", "ShadCN", "TypeScript", "Tailwind CSS"],
+      features: [
+        "Modern responsive design",
+        "AI textile sensor showcase",
+        "Product demonstrations",
+        "Interactive technology demos",
+        "Smart wearable integrations"
+      ],
+      liveUrl: "https://orbis.is-a.dev",
+      githubUrl: "https://github.com/UpendraAkki/Caplance",
+      icon: <Globe className="h-6 w-6" />
+    },
+    {
+      id: 2,
+      title: "Proctor AI",
+      category: "🤖 AI SaaS",
+      description: "An AI powered handwritten Assignment Evaluator that revolutionizes the way educators assess student work with intelligent automation.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Next.js", "React", "ShadCN", "TypeScript", "AI APIs"],
+      features: [
+        "Handwriting recognition AI",
+        "Automated grading system",
+        "Intelligent feedback generation",
+        "Multi-format support",
+        "Teacher dashboard analytics"
+      ],
+      liveUrl: "https://proctorai.io",
+      githubUrl: "#private",
+      icon: <Bot className="h-6 w-6" />
+    },
+    {
+      id: 3,
+      title: "LeadKamp",
+      category: "🚀 Startup Platform",
+      description: "A Premium Lead bundles Marketplace connecting businesses with high-quality, verified leads to accelerate growth and conversions.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Vite", "React", "ShadCN", "TypeScript", "E-commerce"],
+      features: [
+        "Premium lead marketplace",
+        "Quality verification system",
+        "Advanced filtering & search",
+        "Secure payment processing",
+        "Lead performance analytics"
+      ],
+      liveUrl: "https://leadkamp.com",
+      githubUrl: "#private",
+      icon: <Zap className="h-6 w-6" />
+    },
+    {
+      id: 4,
+      title: "Lume Sonic",
+      category: "🎵 Landing Page",
+      description: "Elevate Your Event Experience. Professional sound and lighting solutions that bring your event to life. From concerts to private parties, we deliver exceptional audiovisual experiences.",
+      image: "/api/placeholder/600/400",
+      technologies: ["Vite", "React", "ShadCN", "TypeScript", "Tailwind CSS"],
+      features: [
+        "Event portfolio showcase",
+        "Service booking system",
+        "Equipment catalog",
+        "Client testimonials",
+        "Real-time availability"
+      ],
+      liveUrl: "https://lume-sonic.is-a.dev",
+      githubUrl: "https://github.com/UpendraAkki/LumeSonic",
+      icon: <Gamepad2 className="h-6 w-6" />
+    }
+  ];
 
   return (
-    <section id="dashboard" className="w-full py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div 
-          className={`text-center space-y-4 max-w-3xl mx-auto transition-all duration-700 transform ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
-          <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
-            Intuitive task management interface
+    <section id="portfolio" className="w-full py-20 px-6 md:px-12 bg-background relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 cosmic-grid opacity-20"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
+            Portfolio Showcase
           </h2>
-          <p className="text-cosmic-muted text-lg">
-            A powerful dashboard that adapts to how your team works
+          <p className="text-muted-foreground text-lg">
+            Real projects demonstrating expertise across multiple domains
           </p>
         </div>
-        
-        <div 
-          className={`cosmic-glow relative rounded-xl overflow-hidden border border-white/10 backdrop-blur-sm bg-cosmic-darker/70 shadow-[0_0_15px_rgba(203,255,77,0.15)] transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}
-        >
-          {/* Mock Dashboard */}
-          <div className="bg-cosmic-darker/80 backdrop-blur-md w-full">
-            {/* Dashboard Header */}
-            <div className="flex items-center justify-between p-4 border-b border-cosmic-light/10">
-              <div className="flex items-center gap-4">
-                <div className="h-8 w-8 rounded-md bg-cosmic-light/20 flex items-center justify-center">
-                  <div className="h-3 w-3 rounded-sm bg-cosmic-accent"></div>
+
+        {/* Project Categories */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          {projects.map((project, index) => (
+            <button
+              key={project.id}
+              onClick={() => setActiveProject(index)}
+              className={`px-4 py-2 rounded-full border transition-all duration-300 ${
+                activeProject === index
+                  ? 'bg-primary text-primary-foreground border-primary'
+                  : 'bg-card text-muted-foreground border-border hover:border-primary/50'
+              }`}
+            >
+              <span className="text-sm font-medium">{project.category}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Active Project Display */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Project Info */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3">
+              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                {projects[activeProject].icon}
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-foreground">{projects[activeProject].title}</h3>
+                <p className="text-primary font-medium">{projects[activeProject].category}</p>
+              </div>
+            </div>
+
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              {projects[activeProject].description}
+            </p>
+
+            {/* Technologies */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium text-foreground uppercase tracking-wider">Technologies Used</h4>
+              <div className="flex flex-wrap gap-2">
+                {projects[activeProject].technologies.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 text-sm bg-muted text-foreground rounded-full border border-border"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Key Features */}
+            <div className="space-y-3">
+              <h4 className="text-sm font-medium text-foreground uppercase tracking-wider">Key Features</h4>
+              <div className="grid grid-cols-1 gap-2">
+                {projects[activeProject].features.map((feature, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span className="text-sm text-muted-foreground">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4 pt-4">
+              <Button
+                className="bg-primary text-primary-foreground hover:bg-primary/90"
+                onClick={() => window.open(projects[activeProject].liveUrl, '_blank')}
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                Visit Live Site
+              </Button>
+              {projects[activeProject].githubUrl !== "#private" ? (
+                <Button
+                  variant="outline"
+                  onClick={() => window.open(projects[activeProject].githubUrl, '_blank')}
+                >
+                  <Github className="h-4 w-4 mr-2" />
+                  Source Code
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  disabled
+                  className="opacity-50"
+                >
+                  <Code className="h-4 w-4 mr-2" />
+                  Private Project
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {/* Project Preview */}
+          <div className="relative">
+            <div className="relative rounded-xl overflow-hidden border border-border bg-card shadow-2xl">
+              {/* Browser Header */}
+              <div className="flex items-center gap-2 p-4 border-b border-border bg-muted/50">
+                <div className="flex gap-2">
+                  <div className="h-3 w-3 rounded-full bg-red-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
+                  <div className="h-3 w-3 rounded-full bg-green-500"></div>
                 </div>
-                <span className="text-white font-medium">Marketing Campaign Q2</span>
+                <div className="flex-1 mx-4">
+                  <div className="h-6 bg-background rounded border border-border flex items-center px-3">
+                    <div className="h-2 w-2 rounded-full bg-green-500 mr-2"></div>
+                    <span className="text-xs text-muted-foreground">
+                      {projects[activeProject].liveUrl.replace('https://', '')}
+                    </span>
+                  </div>
+                </div>
               </div>
               
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2">
-                  <div className="h-8 w-8 rounded-full bg-cosmic-light/30 border-2 border-cosmic-darker"></div>
-                  <div className="h-8 w-8 rounded-full bg-cosmic-light/20 border-2 border-cosmic-darker"></div>
-                  <div className="h-8 w-8 rounded-full bg-cosmic-light/40 border-2 border-cosmic-darker"></div>
-                  <div className="h-8 w-8 rounded-full bg-cosmic-accent/20 border-2 border-cosmic-darker flex items-center justify-center text-xs text-cosmic-accent">+3</div>
+              {/* Project Preview Content */}
+              <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center relative overflow-hidden">
+                {/* Animated Code Lines */}
+                <div className="absolute inset-0 opacity-20">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-1 bg-primary rounded-full mb-2 animate-pulse"
+                      style={{
+                        width: `${Math.random() * 60 + 20}%`,
+                        marginLeft: `${Math.random() * 20}%`,
+                        animationDelay: `${i * 0.2}s`
+                      }}
+                    ></div>
+                  ))}
                 </div>
                 
-                <div className="h-8 px-3 rounded-md bg-cosmic-light/10 flex items-center justify-center text-white text-sm">
-                  Share
+                <div className="text-center z-10">
+                  <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center mb-4 mx-auto">
+                    {projects[activeProject].icon}
+                  </div>
+                  <h4 className="text-lg font-medium text-foreground mb-2">{projects[activeProject].title}</h4>
+                  <p className="text-sm text-muted-foreground">Live Project Available</p>
                 </div>
               </div>
             </div>
-            
-            {/* Dashboard Content */}
-            <div className="flex h-[500px] overflow-hidden">
-              {/* Sidebar */}
-              <div className="w-64 border-r border-cosmic-light/10 p-4 space-y-4">
-                <div className="space-y-2">
-                  <div className="text-xs text-cosmic-muted uppercase">Navigation</div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md bg-cosmic-light/10 text-white">
-                      <div className="h-3 w-3 rounded-sm bg-cosmic-accent"></div>
-                      <span>Board</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-sm bg-cosmic-muted/30"></div>
-                      <span>Timeline</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-sm bg-cosmic-muted/30"></div>
-                      <span>Calendar</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-sm bg-cosmic-muted/30"></div>
-                      <span>Files</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-2 pt-4">
-                  <div className="text-xs text-cosmic-muted uppercase">Teams</div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-full bg-cosmic-accent/80"></div>
-                      <span>Marketing</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-full bg-purple-400/80"></div>
-                      <span>Design</span>
-                    </div>
-                    <div className="flex items-center gap-3 px-3 py-2 rounded-md text-cosmic-muted hover:bg-cosmic-light/5">
-                      <div className="h-3 w-3 rounded-full bg-blue-400/80"></div>
-                      <span>Development</span>
-                    </div>
-                  </div>
-                </div>
+
+            {/* Floating stats */}
+            <div className="absolute -bottom-4 -right-4 bg-card border border-border rounded-xl p-4 shadow-lg">
+              <div className="text-center">
+                <div className="text-lg font-bold text-primary">{projects[activeProject].technologies.length}</div>
+                <div className="text-xs text-muted-foreground">Technologies</div>
               </div>
-              
-              {/* Main Content */}
-              <div className="flex-1 p-4">
-                {/* Board Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-medium">Tasks</h3>
-                    <span className="text-xs bg-cosmic-light/20 px-2 py-1 rounded-full text-cosmic-muted">23</span>
-                  </div>
-                  
-                  <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-md bg-cosmic-light/10 flex items-center justify-center text-cosmic-muted">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 12V12.01M8 12V12.01M16 12V12.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div className="h-8 w-8 rounded-md bg-cosmic-light/10 flex items-center justify-center text-cosmic-muted">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17 9L17 17H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M17 17L7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div className="h-8 px-3 rounded-md bg-cosmic-accent text-cosmic-darker flex items-center justify-center text-sm font-medium">
-                      New Task
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Kanban Board - replaced static implementation with TaskBoard component */}
-                <TaskBoard className="h-[400px]" />
+            </div>
+          </div>
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-4 p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm">
+            <div className="text-center">
+              <h3 className="text-lg font-medium text-foreground mb-2">Ready to build your next project?</h3>
+              <p className="text-muted-foreground text-sm mb-4">Let's discuss how I can bring value to your business at $45-$50/hour</p>
+              <div className="flex gap-3">
+                <Button 
+                  onClick={() => window.open('https://github.com/UpendraAkki', '_blank')}
+                  variant="outline"
+                  size="sm"
+                >
+                  <Github className="h-4 w-4 mr-2" />
+                  View More Projects
+                </Button>
+                <Button 
+                  onClick={() => window.open('mailto:upendra@leadkamp.com?subject=Project Discussion - Portfolio Review', '_blank')}
+                  size="sm"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Start Project
+                </Button>
               </div>
             </div>
           </div>

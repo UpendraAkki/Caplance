@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ChevronDown, Layers, Grid3x3, ListCheck, BookOpen, Star, LayoutDashboard } from "lucide-react";
@@ -8,52 +7,95 @@ const Features = () => {
   
   const features = [
     {
-      title: "Payment Automation",
-      description: "Automate payment processing and reconciliation to reduce manual errors and improve efficiency.",
-      expandedDescription: "Set up automated payment workflows with custom approval chains. Schedule recurring payments, automate invoice processing, and create conditional rules for different transaction types. Reduce manual intervention and ensure compliance with financial regulations.",
+      title: "AI SaaS Development",
+      description: "Build intelligent SaaS applications with cutting-edge AI integration and modern tech stacks.",
+      expandedDescription: "Expertise in developing scalable AI-powered SaaS platforms using React, Node.js, Python, and modern AI APIs. I create intelligent applications that solve real business problems with user-friendly interfaces and robust backend systems.",
       icon: (
         <Layers size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Real-time Analytics",
-      description: "Monitor financial performance with real-time dashboards and comprehensive reporting.",
-      expandedDescription: "Track key financial metrics with customizable dashboards. Monitor cash flow, payment volumes, and transaction success rates in real-time. Generate detailed reports for stakeholders and identify trends before they impact your business.",
+      title: "Landing Pages & Web Apps",
+      description: "Create high-converting landing pages and responsive web applications that drive results.",
+      expandedDescription: "Design and develop modern, responsive landing pages and web applications using React, TypeScript, and Tailwind CSS. Focus on conversion optimization, performance, and exceptional user experience across all devices.",
       icon: (
         <Grid3x3 size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Risk Management",
-      description: "Advanced fraud detection and risk assessment tools to protect your business.",
-      expandedDescription: "Utilize machine learning algorithms to detect suspicious transactions and prevent fraud. Set up custom risk rules, monitor transaction patterns, and receive instant alerts for unusual activity. Protect your business with enterprise-grade security measures.",
+      title: "AI Automations",
+      description: "Streamline business processes with intelligent automation workflows and AI integrations.",
+      expandedDescription: "Build custom AI automation solutions using OpenAI, Claude, and other AI services. Create workflows that automate repetitive tasks, integrate with existing systems, and provide intelligent decision-making capabilities.",
       icon: (
         <LayoutDashboard size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Compliance Tools",
-      description: "Built-in compliance features to meet regulatory requirements effortlessly.",
-      expandedDescription: "Stay compliant with financial regulations across multiple jurisdictions. Automated KYC/AML checks, transaction monitoring, and regulatory reporting. Generate audit trails and maintain documentation to meet compliance standards.",
+      title: "Internal Tools",
+      description: "Develop custom internal tools and dashboards to optimize your team's productivity.",
+      expandedDescription: "Create powerful internal tools, admin dashboards, and business applications tailored to your specific needs. Focus on improving team efficiency, data visualization, and workflow management with intuitive interfaces.",
       icon: (
         <ListCheck size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "Multi-currency Support",
-      description: "Process payments in multiple currencies with real-time exchange rates.",
-      expandedDescription: "Accept and process payments in over 150 currencies with competitive exchange rates. Automatic currency conversion, hedging tools, and multi-currency accounting. Expand your business globally with seamless international payment processing.",
+      title: "Game Development",
+      description: "3+ years of Unity game development experience creating engaging interactive experiences.",
+      expandedDescription: "Experienced Unity developer with 3+ years building games and interactive applications. Expertise in C#, game mechanics, UI/UX for games, performance optimization, and publishing across multiple platforms.",
       icon: (
         <Star size={24} className="text-cosmic-accent" />
       )
     },
     {
-      title: "API Integration",
-      description: "Powerful APIs for seamless integration with your existing financial systems.",
-      expandedDescription: "Connect with your ERP, accounting software, and banking systems through our comprehensive APIs. Real-time webhooks, detailed documentation, and SDKs for popular programming languages. Build custom integrations that fit your unique business needs.",
+      title: "Leadership & Strategy",
+      description: "Ready for leadership roles with expertise in project management and strategic planning.",
+      expandedDescription: "Strong background in marketing, sales, and team leadership. Experienced in project management, research coordination, and strategic planning. Ready to take on leadership roles like Project Manager, Team Lead, or Research Manager.",
       icon: (
         <BookOpen size={24} className="text-cosmic-accent" />
       )
+    }
+  ];
+
+  const techStacks = [
+    {
+      category: "🎮 Game Development",
+      color: "bg-purple-500/10 border-purple-500/20",
+      technologies: [
+        { name: "Unity", level: 95, experience: "3+ years" },
+        { name: "C#", level: 90, experience: "3+ years" },
+        { name: "Blender", level: 75, experience: "2+ years" },
+        { name: "Photon", level: 85, experience: "2+ years" }
+      ]
+    },
+    {
+      category: "🤖 AI Development",
+      color: "bg-blue-500/10 border-blue-500/20",
+      technologies: [
+        { name: "OpenAI API", level: 90, experience: "1+ year" },
+        { name: "Python", level: 85, experience: "2+ years" },
+        { name: "TensorFlow", level: 70, experience: "1+ year" },
+        { name: "LangChain", level: 80, experience: "1+ year" }
+      ]
+    },
+    {
+      category: "📈 Web Development",
+      color: "bg-green-500/10 border-green-500/20",
+      technologies: [
+        { name: "React", level: 95, experience: "3+ years" },
+        { name: "TypeScript", level: 90, experience: "2+ years" },
+        { name: "Node.js", level: 85, experience: "2+ years" },
+        { name: "Tailwind CSS", level: 95, experience: "2+ years" }
+      ]
+    },
+    {
+      category: "👨‍💼 Tools & Management",
+      color: "bg-orange-500/10 border-orange-500/20",
+      technologies: [
+        { name: "Git", level: 90, experience: "3+ years" },
+        { name: "Docker", level: 75, experience: "1+ year" },
+        { name: "AWS", level: 70, experience: "1+ year" },
+        { name: "Figma", level: 80, experience: "2+ years" }
+      ]
     }
   ];
   
@@ -63,13 +105,13 @@ const Features = () => {
   
   return (
     <section id="features" className="w-full py-12 md:py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-3 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter">
             Everything your business needs
           </h2>
           <p className="text-cosmic-muted text-lg">
-            Comprehensive fintech solutions to streamline your financial operations and drive growth
+            Comprehensive development solutions from a versatile full-stack developer ready to drive your company's growth
           </p>
         </div>
         
@@ -99,14 +141,88 @@ const Features = () => {
                 <div className="pt-3 border-t border-cosmic-light/10">
                   <p className="text-cosmic-muted">{feature.expandedDescription}</p>
                   <div className="mt-4 flex justify-end">
-                    <button className="text-cosmic-accent hover:text-cosmic-accent/80 text-sm font-medium">
-                      Learn more →
+                    <button 
+                      className="text-cosmic-accent hover:text-cosmic-accent/80 text-sm font-medium"
+                      onClick={() => window.open('mailto:upendra@leadkamp.com', '_blank')}
+                    >
+                      Hire me for this →
                     </button>
                   </div>
                 </div>
               </CollapsibleContent>
             </Collapsible>
           ))}
+        </div>
+
+        {/* Tech Stack Showcase */}
+        <div className="space-y-12">
+          <div className="text-center">
+            <h3 className="text-2xl md:text-3xl font-medium tracking-tighter text-foreground mb-4">
+              Technology Expertise
+            </h3>
+            <p className="text-muted-foreground text-lg">
+              Mastering the tools that power modern development
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {techStacks.map((stack, stackIndex) => (
+              <div
+                key={stackIndex}
+                className={`p-6 rounded-xl border ${stack.color} backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5`}
+              >
+                <h4 className="text-lg font-medium text-foreground mb-1">{stack.category}</h4>
+                <p className="text-sm text-muted-foreground mb-6">Professional experience and proficiency</p>
+                
+                <div className="space-y-4">
+                  {stack.technologies.map((tech, techIndex) => (
+                    <div key={techIndex} className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm font-medium text-foreground">{tech.name}</span>
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <span>{tech.experience}</span>
+                          <span className="font-medium text-primary">{tech.level}%</span>
+                        </div>
+                      </div>
+                      <div className="h-2 bg-muted rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-primary rounded-full transition-all duration-1000 ease-out"
+                          style={{ 
+                            width: `${tech.level}%`,
+                            animationDelay: `${stackIndex * 200 + techIndex * 100}ms`
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Achievement Summary */}
+          <div className="text-center">
+            <div className="inline-flex flex-col md:flex-row items-center gap-8 p-8 rounded-xl border border-border bg-card/50 backdrop-blur-sm">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">15+</div>
+                  <div className="text-sm text-muted-foreground">Technologies Mastered</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">3+</div>
+                  <div className="text-sm text-muted-foreground">Years Experience</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">10+</div>
+                  <div className="text-sm text-muted-foreground">Projects Completed</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-primary mb-2">24/7</div>
+                  <div className="text-sm text-muted-foreground">Available to Start</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

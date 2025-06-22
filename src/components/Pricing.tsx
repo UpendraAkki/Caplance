@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
@@ -6,52 +5,56 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 const Pricing = () => {
   const plans = [
     {
-      name: "Starter",
-      price: "Free",
-      description: "Perfect for small businesses starting their fintech journey",
+      name: "Hourly Consulting",
+      price: "$45-50",
+      period: "per hour",
+      description: "Perfect for specific tasks, consultations, and short-term projects",
       features: [
-        "Up to 100 transactions/month",
-        "Basic payment processing",
-        "Standard reporting",
-        "Email support",
-        "Basic fraud protection"
+        "Flexible scheduling",
+        "No minimum commitment",
+        "Direct communication",
+        "Quick turnaround",
+        "Expert guidance",
+        "Problem-solving focus",
+        "Technical consultation"
       ],
-      buttonText: "Get Started",
+      buttonText: "Book Hourly Work",
       buttonVariant: "outline",
       popular: false
     },
     {
-      name: "Professional",
-      price: "$99",
-      period: "per month",
-      description: "Ideal for growing businesses with higher transaction volumes",
+      name: "Project-Based",
+      price: "Custom Quote",
+      period: "based on scope",
+      description: "Ideal for complete projects with defined deliverables and timelines",
       features: [
-        "Up to 10,000 transactions/month",
-        "Advanced payment processing",
-        "Real-time analytics",
-        "Multi-currency support",
-        "Advanced fraud protection",
-        "API access",
-        "Priority support"
+        "Full project ownership",
+        "Milestone-based delivery",
+        "Regular progress updates",
+        "Quality assurance",
+        "Post-launch support",
+        "Documentation included",
+        "Competitive pricing"
       ],
-      buttonText: "Start 14-day trial",
+      buttonText: "Request Quote",
       buttonVariant: "default",
       popular: true
     },
     {
-      name: "Enterprise",
-      price: "Custom",
-      description: "For large organizations with complex financial operations",
+      name: "Flexible Role",
+      price: "Negotiable",
+      period: "based on arrangement",
+      description: "Join your team for long-term collaboration in development or leadership roles",
       features: [
-        "Unlimited transactions",
-        "Custom payment workflows",
-        "Advanced compliance tools",
-        "Dedicated infrastructure",
-        "White-label solutions",
-        "Dedicated account manager",
-        "24/7 premium support"
+        "Full-time or part-time",
+        "Remote or hybrid work",
+        "Leadership opportunities",
+        "Team collaboration",
+        "Strategic planning",
+        "Long-term commitment",
+        "Growth-oriented mindset"
       ],
-      buttonText: "Contact Sales",
+      buttonText: "Discuss Role",
       buttonVariant: "outline",
       popular: false
     }
@@ -62,10 +65,10 @@ const Pricing = () => {
       <div className="max-w-7xl mx-auto space-y-16">
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-foreground">
-            Transparent pricing for every stage
+            Flexible Work Arrangements
           </h2>
           <p className="text-muted-foreground text-lg">
-            Scale your financial operations with plans that grow with your business
+            Choose the engagement model that works best for your needs at competitive rates
           </p>
         </div>
         
@@ -117,6 +120,14 @@ const Pricing = () => {
                       : "w-full border-border text-foreground hover:bg-muted"
                   }
                   variant={plan.buttonVariant as "default" | "outline"}
+                  onClick={() => {
+                    const subject = plan.name === "Hourly Consulting" 
+                      ? "Hourly Work Request - $45-50/hr"
+                      : plan.name === "Project-Based" 
+                      ? "Project Quote Request - Caplance"
+                      : "Flexible Role Discussion - Caplance";
+                    window.open(`mailto:upendra@leadkamp.com?subject=${subject}`, '_blank');
+                  }}
                 >
                   {plan.buttonText}
                 </Button>
@@ -125,8 +136,51 @@ const Pricing = () => {
           ))}
         </div>
         
+        {/* Availability Notice */}
+        <div className="text-center">
+          <div className="inline-flex flex-col md:flex-row items-center gap-6 p-6 rounded-xl border border-border bg-card/50 backdrop-blur-sm">
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-medium text-foreground mb-2">Available for immediate start</h3>
+              <p className="text-muted-foreground text-sm">I work in flexible time zones and can adapt to your team's schedule. Recent BBA graduate specializing in Entrepreneurship.</p>
+            </div>
+            <div className="flex gap-3 flex-shrink-0">
+              <Button 
+                variant="outline" 
+                onClick={() => window.open('https://www.linkedin.com/in/upendra-akki/', '_blank')}
+              >
+                LinkedIn
+              </Button>
+              <Button 
+                onClick={() => window.open('mailto:upendra@leadkamp.com?subject=Work Availability - Caplance', '_blank')}
+              >
+                Contact Now
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Rate Information */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-8 p-6 rounded-xl border border-primary/20 bg-primary/5 backdrop-blur-sm">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-1">$45-50</div>
+              <div className="text-sm text-muted-foreground">Hourly Rate</div>
+            </div>
+            <div className="h-8 w-px bg-border"></div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-1">Flexible</div>
+              <div className="text-sm text-muted-foreground">Time Zones</div>
+            </div>
+            <div className="h-8 w-px bg-border"></div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-primary mb-1">Available</div>
+              <div className="text-sm text-muted-foreground">Immediately</div>
+            </div>
+          </div>
+        </div>
+        
         <div className="text-center text-muted-foreground">
-          Have questions? <a href="#" className="text-primary hover:underline">Contact our sales team</a>
+          Ready to discuss your project? <a href="mailto:upendra@leadkamp.com" className="text-primary hover:underline">Contact Upendra directly</a>
         </div>
       </div>
     </section>
